@@ -71,7 +71,11 @@ export default function BootSequence({ onComplete }) {
                         transition={{ duration: 0.1 }}
                         className="mb-px whitespace-pre-wrap break-words"
                     >
-                        {log}
+                        {log.includes("[  OK  ]") ? (
+                            <span>
+                                <span className="text-green-500 font-bold">[  OK  ]</span> {log.replace("[  OK  ]", "")}
+                            </span>
+                        ) : log}
                     </motion.div>
                 ))}
             </div>
