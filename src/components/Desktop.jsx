@@ -67,20 +67,13 @@ export default function Desktop({ children, wallpaper }) {
             onClick={handleCloseContext}
         >
             {/* Wallpaper Layer - Sized to fit above Taskbar (h-12 = 3rem) */}
+            {/* Wallpaper Layer */}
             <div
-                className="absolute top-0 left-0 w-full bg-no-repeat bg-center"
+                className="absolute inset-0 w-full h-full bg-no-repeat bg-center bg-cover"
                 style={{
-                    height: 'calc(100vh - 3rem)',
                     backgroundImage: `url(${wallpaper})`,
-                    backgroundSize: '100% 100%'
                 }}
             />
-
-            {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px] pointer-events-none" />
-
-            {/* Grid Pattern Effect (simulated) */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
             {/* Desktop Icons */}
             <div className="absolute top-4 left-4 flex flex-col gap-4 z-10 flex-wrap h-[calc(100vh-80px)] content-start">
@@ -121,9 +114,6 @@ export default function Desktop({ children, wallpaper }) {
 
             {/* Activities Sidebar */}
             <Activities isOpen={showActivities} onClose={() => setShowActivities(false)} />
-
-            {/* Scanline Effect Overlay */}
-            <div className="scanline" />
 
         </motion.div>
     );

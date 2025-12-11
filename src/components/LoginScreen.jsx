@@ -13,7 +13,7 @@ export default function LoginScreen({ onLogin, wallpaper }) {
         setLoading(true);
         // Simulate auth delay
         setTimeout(() => {
-            if (password === 'visitor' || password === '') {
+            if (password === 'aaditya' || password === '') {
                 onLogin();
             } else {
                 setError(true);
@@ -28,7 +28,7 @@ export default function LoginScreen({ onLogin, wallpaper }) {
         setShowPasswordInput(true);
 
         // Typewriter effect
-        const fullPassword = 'visitor';
+        const fullPassword = 'aaditya';
         let currentIndex = 0;
 
         // Small delay before typing starts to allow animation to begin
@@ -61,7 +61,7 @@ export default function LoginScreen({ onLogin, wallpaper }) {
         >
             {/* Background */}
             <div
-                className="absolute inset-0 opacity-40 bg-[length:100%_100%] bg-no-repeat bg-center transition-all duration-1000"
+                className="absolute inset-0 opacity-40 bg-cover bg-no-repeat bg-center transition-all duration-1000"
                 style={{ backgroundImage: `url(${wallpaper})` }}
             />
 
@@ -70,13 +70,20 @@ export default function LoginScreen({ onLogin, wallpaper }) {
                     onClick={handleProfileClick}
                     className="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-500 p-[2px] mb-6 shadow-lg shadow-blue-500/20 cursor-pointer hover:scale-105 transition-transform duration-300"
                 >
-                    <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
-                        <User size={40} className="text-gray-300" />
+                    <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center overflow-hidden">
+                        <video
+                            src="/login-page.mp4"
+                            autoPlay
+                            muted
+                            loop
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-1">Visitor</h2>
-                <p className="text-gray-400 text-sm mb-8">Kali Portfolio Environment</p>
+                <h2 className="text-2xl font-bold mb-1">Aaditya</h2>
+                <p className="text-gray-400 text-sm mb-4">Kali Portfolio Login</p>
+                <p className="text-gray-500 text-xs mb-8">Click on the user to login</p>
 
                 <div
                     className={`w-full transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] transform overflow-hidden ${showPasswordInput
@@ -94,7 +101,7 @@ export default function LoginScreen({ onLogin, wallpaper }) {
                                 value={password}
                                 onChange={(e) => { setPassword(e.target.value); setError(false); }}
                                 className={`w-full bg-black/50 border rounded-lg py-2 pl-10 pr-10 text-sm outline-none transition-all ${error ? 'border-red-500 placeholder-red-500' : 'border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'}`}
-                                placeholder={error ? "Authentication Failed" : "Password (visitor)"}
+                                placeholder={error ? "Authentication Failed" : "Password (aaditya)"}
                             />
                             <button
                                 type="submit"
@@ -107,11 +114,7 @@ export default function LoginScreen({ onLogin, wallpaper }) {
                     </form>
                 </div>
 
-                <div className="mt-8 flex gap-4 text-xs text-gray-500">
-                    <span className="hover:text-gray-300 cursor-pointer transition-colors">Switch User</span>
-                    <span className="hover:text-gray-300 cursor-pointer transition-colors">Remote Login</span>
-                    <span className="hover:text-gray-300 cursor-pointer transition-colors">Restart</span>
-                </div>
+
             </div>
 
             <div className="absolute bottom-8 text-gray-600 text-xs font-mono">
