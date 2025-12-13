@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Wifi, Volume2, Battery, Power, Search, Terminal, User, Folder, Briefcase, Code, Chrome } from 'lucide-react';
+import { KaliLogo } from './KaliLogo';
 import { useWindowManager } from '../context/WindowManagerContext';
 import TerminalApp from './apps/Terminal';
 import AboutApp from './apps/About';
@@ -113,8 +114,8 @@ export default function Taskbar({ onToggleActivities }) {
                         className="hover:text-white transition-colors flex items-center gap-2 group"
                         onClick={onToggleActivities}
                     >
-                        <span className="text-lg group-hover:animate-pulse">🌀</span>
-                        <span className="font-bold tracking-tight">Activities</span>
+                        <KaliLogo size={24} className="text-blue-400 group-hover:animate-pulse" />
+                        <span className="font-bold tracking-tight">All Apps</span>
                     </button>
 
                     {/* Simulated Workspace Indicator */}

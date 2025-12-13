@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { WindowManagerProvider, useWindowManager } from './context/WindowManagerContext';
 import { AnimatePresence } from 'framer-motion';
 import BootSequence from './components/BootSequence';
+import QuoteScreen from './components/QuoteScreen';
 import Desktop from './components/Desktop';
 import Window from './components/Window';
 import LoginScreen from './components/LoginScreen';
-import Terminal from './components/apps/Terminal';
-import { Terminal as TerminalIcon } from 'lucide-react';
 
 const DesktopEnvironment = ({ wallpaper }) => {
   const { windows, openWindow, closeWindow, focusWindow, focusedWindowId } = useWindowManager();
@@ -17,8 +16,6 @@ const DesktopEnvironment = ({ wallpaper }) => {
 
   return (
     <Desktop wallpaper={wallpaper}>
-      {/* Desktop Icons could go here */}
-
       {/* Render Windows */}
       {windows.map((win) => (
         <Window
@@ -38,7 +35,7 @@ const DesktopEnvironment = ({ wallpaper }) => {
 };
 
 function App() {
-  const [status, setStatus] = useState('booting'); // booting, login, desktop
+  const [status, setStatus] = useState('quote'); // quote, booting, login, desktop
   const [wallpaper, setWallpaper] = useState('/wallpaper_1.jpg');
 
   useEffect(() => {
@@ -53,6 +50,10 @@ function App() {
   return (
     <WindowManagerProvider>
       <AnimatePresence mode="wait">
+        {status === 'quote' && (
+          <QuoteScreen key="quote" onComplete={() => setStatus('booting')} />
+        )}
+
         {status === 'booting' && (
           <BootSequence key="boot" onComplete={() => setStatus('login')} />
         )}
