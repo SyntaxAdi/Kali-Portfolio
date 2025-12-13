@@ -38,10 +38,10 @@ export default function BootSequence({ onComplete }) {
                 }
                 return prev;
             });
-        }, 30);
+        }, 100);
 
         // Progress bar effect
-        // 100 / 2 = 50 steps. 50 * 20ms = 1000ms = 1s
+        // 100 / 2 = 50 steps. 50 * 50ms = 2500ms = 2.5s
         const progressTimer = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 100) {
@@ -52,7 +52,7 @@ export default function BootSequence({ onComplete }) {
                 }
                 return prev + 2;
             });
-        }, 20);
+        }, 50);
 
         return () => {
             clearInterval(logTimer);

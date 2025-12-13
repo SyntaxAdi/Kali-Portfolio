@@ -7,7 +7,7 @@ export default function QuoteScreen({ onComplete }) {
         // Show for 4 seconds then complete
         const timer = setTimeout(() => {
             onComplete();
-        }, 2500);
+        }, 4000);
 
         return () => clearTimeout(timer);
     }, [onComplete]);
