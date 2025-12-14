@@ -10,7 +10,7 @@ import {
     Github,
     Linkedin,
     Instagram,
-    Twitter,
+    Send,
     Power,
     ChevronRight
 } from 'lucide-react';
@@ -48,6 +48,12 @@ const ConnectItem = ({ icon: Icon, label, onClick }) => (
 
 export default function Activities({ isOpen, onClose }) {
     const { openWindow } = useWindowManager();
+    const [view, setView] = React.useState('grid'); // 'grid' | 'about'
+
+    // Reset view when closed
+    React.useEffect(() => {
+        if (!isOpen) setView('grid');
+    }, [isOpen]);
 
     if (!isOpen) return null;
 
@@ -86,48 +92,107 @@ export default function Activities({ isOpen, onClose }) {
                 {/* Content Body */}
                 <div className="flex-1 flex bg-[#0f0f0f]/95 backdrop-blur-xl">
 
-                    {/* APPLICATIONS SECTION (Left) */}
-                    <div className="flex-[2] p-5 border-r border-white/5 bg-gradient-to-b from-[#131313] to-[#0f0f0f]">
-                        <h3 className="text-[10px] font-bold text-gray-500 mb-4 tracking-[0.2em] uppercase pl-1">Applications</h3>
+                    {/* APPLICATIONS / ABOUT SECTION (Left) */}
+                    <div className="flex-[2] p-5 border-r border-white/5 bg-gradient-to-b from-[#131313] to-[#0f0f0f] relative overflow-hidden">
 
-                        <div className="grid grid-cols-4 gap-x-2 gap-y-4">
-                            <AppGridItem
-                                icon={Music}
-                                label="Music"
-                                colorClass="text-green-400"
-                                onClick={() => handleLaunch('music', 'Music Player', <MusicPlayerApp />, <Music size={16} />)}
-                            />
-                            <AppGridItem
-                                icon={Globe}
-                                label="Firefox"
-                                colorClass="text-orange-500"
-                                onClick={() => handleLaunch('chrome', 'Firefox - Web Browser', <ChromeApp />, <Globe size={16} />)}
-                            />
-                            <AppGridItem
-                                icon={Camera}
-                                label="Camera"
-                                colorClass="text-gray-300"
-                                onClick={() => alert('Camera not available in simulated environment.')}
-                            />
-                            <AppGridItem
-                                icon={Gamepad2}
-                                label="Games"
-                                colorClass="text-purple-400"
-                                onClick={() => alert('Minecraft launcher not installed.')}
-                            />
-                            <AppGridItem
-                                icon={Info}
-                                label="About"
-                                colorClass="text-blue-400"
-                                onClick={() => handleLaunch('about', 'About System', <AboutApp />, <Info size={16} />)}
-                            />
-                            {/* Placeholder for expansion */}
-                            <AppGridItem
-                                icon={Code}
-                                label="VS Code"
-                                colorClass="text-blue-500"
-                                onClick={() => alert('VS Code shortcut.')}
-                            />
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-[10px] font-bold text-gray-500 tracking-[0.2em] uppercase pl-1">Applications</h3>
+                        </div>
+
+                        {/* View Content */}
+                        <div className="relative w-full h-full">
+
+                            {/* Grid View */}
+                            <div className={`absolute inset-0 transition-opacity duration-300 ${view === 'grid' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
+                                <div className="grid grid-cols-4 gap-x-2 gap-y-4">
+                                    <AppGridItem
+                                        icon={Music}
+                                        label="Music"
+                                        colorClass="text-green-400"
+                                        onClick={() => handleLaunch('music', 'Music Player', <MusicPlayerApp />, <Music size={16} />)}
+                                    />
+                                    <AppGridItem
+                                        icon={Globe}
+                                        label="Firefox"
+                                        colorClass="text-orange-500"
+                                        onClick={() => handleLaunch('chrome', 'Firefox - Web Browser', <ChromeApp />, <Globe size={16} />)}
+                                    />
+                                    <AppGridItem
+                                        icon={Camera}
+                                        label="Camera"
+                                        colorClass="text-gray-300"
+                                        onClick={() => alert('Camera not available in simulated environment.')}
+                                    />
+                                    <AppGridItem
+                                        icon={Gamepad2}
+                                        label="Games"
+                                        colorClass="text-purple-400"
+                                        onClick={() => alert('Minecraft launcher not installed.')}
+                                    />
+                                    <AppGridItem
+                                        icon={Info}
+                                        label="About System"
+                                        colorClass="text-blue-400"
+                                        onClick={() => setView('about')}
+                                    />
+                                    <AppGridItem
+                                        icon={Code}
+                                        label="VS Code"
+                                        colorClass="text-blue-500"
+                                        onClick={() => alert('VS Code shortcut.')}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* About View */}
+                            <div className={`absolute inset-0 transition-all duration-300 transform ${view === 'about' ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-8 z-0 pointer-events-none'}`}>
+                                <button
+                                    onClick={() => setView('grid')}
+                                    className="text-xs text-blue-400 hover:text-blue-300 mb-6 flex items-center gap-1 transition-colors font-medium"
+                                >
+                                    + Back to apps
+                                </button>
+
+                                <div className="flex flex-col gap-6 pl-1">
+                                    <div className="flex items-center gap-4">
+                                        <div className="p-3 bg-white/5 rounded-full border border-white/10">
+                                            <KaliLogo size={42} className="text-blue-400" />
+                                        </div>
+                                        <div>
+                                            <h2 className="text-white font-bold text-lg leading-tight">Kali Portfolio</h2>
+                                            <span className="text-gray-500 text-xs font-mono">Version 2024.1</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-1.5 font-mono text-xs">
+                                        <div className="flex">
+                                            <span className="text-blue-400 w-20">OS:</span>
+                                            <span className="text-gray-300">Kali Linux x86_64</span>
+                                        </div>
+                                        <div className="flex">
+                                            <span className="text-blue-400 w-20">Kernel:</span>
+                                            <span className="text-gray-300">6.6.9-kali1-amd64</span>
+                                        </div>
+                                        <div className="flex">
+                                            <span className="text-blue-400 w-20">Shell:</span>
+                                            <span className="text-gray-300">zsh 5.9</span>
+                                        </div>
+                                        <div className="flex">
+                                            <span className="text-blue-400 w-20">DE:</span>
+                                            <span className="text-gray-300">Portfolio DE</span>
+                                        </div>
+                                        <div className="flex">
+                                            <span className="text-blue-400 w-20">User:</span>
+                                            <span className="text-gray-300">Aaditya</span>
+                                        </div>
+                                        <div className="flex">
+                                            <span className="text-blue-400 w-20">Theme:</span>
+                                            <span className="text-gray-300">Kali Dark</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -137,28 +202,28 @@ export default function Activities({ isOpen, onClose }) {
                         <div className="flex flex-col gap-0.5">
                             <ConnectItem
                                 icon={Code}
-                                label="Source"
-                                onClick={() => handleExternalLink('https://github.com/aaditya-srivastava/Kali-Portfolio')}
+                                label="Source Code"
+                                onClick={() => handleExternalLink('https://github.com/SyntaxAdi/Kali-Portfolio')}
                             />
                             <ConnectItem
                                 icon={Github}
                                 label="GitHub"
-                                onClick={() => handleExternalLink('https://github.com/aaditya-srivastava')}
+                                onClick={() => handleExternalLink('https://github.com/SyntaxAdi')}
                             />
                             <ConnectItem
                                 icon={Linkedin}
                                 label="LinkedIn"
-                                onClick={() => handleExternalLink('https://linkedin.com/in/aaditya-srivastava')}
+                                onClick={() => handleExternalLink('https://www.linkedin.com/in/aaditya-pawar2004/')}
                             />
                             <ConnectItem
                                 icon={Instagram}
                                 label="Instagram"
-                                onClick={() => handleExternalLink('https://instagram.com')}
+                                onClick={() => handleExternalLink('https://www.instagram.com/lol_aaditya_lol')}
                             />
                             <ConnectItem
-                                icon={Twitter}
-                                label="Twitter"
-                                onClick={() => handleExternalLink('https://twitter.com')}
+                                icon={Send}
+                                label="Telegram"
+                                onClick={() => handleExternalLink('https://t.me/ItzAditya_xD')}
                             />
                         </div>
 
