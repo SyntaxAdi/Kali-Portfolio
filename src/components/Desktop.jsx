@@ -33,7 +33,7 @@ const DesktopIcon = ({ icon: Icon, label, onClick }) => (
     </div>
 );
 
-export default function Desktop({ children, wallpaper }) {
+export default function Desktop({ children, wallpaper, onShutdown }) {
     const { openWindow } = useWindowManager();
     const [contextMenu, setContextMenu] = useState({ show: false, x: 0, y: 0 });
     const [showActivities, setShowActivities] = useState(false);
@@ -113,7 +113,11 @@ export default function Desktop({ children, wallpaper }) {
             </div>
 
             {/* Activities Sidebar */}
-            <Activities isOpen={showActivities} onClose={() => setShowActivities(false)} />
+            <Activities
+                isOpen={showActivities}
+                onClose={() => setShowActivities(false)}
+                onShutdown={onShutdown}
+            />
 
         </motion.div>
     );

@@ -6,8 +6,9 @@ import QuoteScreen from './components/QuoteScreen';
 import Desktop from './components/Desktop';
 import Window from './components/Window';
 import LoginScreen from './components/LoginScreen';
+import ShutdownSequence from './components/ShutdownSequence';
 
-const DesktopEnvironment = ({ wallpaper }) => {
+const DesktopEnvironment = ({ wallpaper, onShutdown }) => {
   const { windows, openWindow, closeWindow, focusWindow, focusedWindowId } = useWindowManager();
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const DesktopEnvironment = ({ wallpaper }) => {
   }, []);
 
   return (
-    <Desktop wallpaper={wallpaper}>
+    <Desktop wallpaper={wallpaper} onShutdown={onShutdown}>
       {/* Render Windows */}
       {windows.map((win) => (
         <Window
@@ -35,7 +36,7 @@ const DesktopEnvironment = ({ wallpaper }) => {
 };
 
 function App() {
-  const [status, setStatus] = useState('quote'); // quote, booting, login, desktop
+  const [status, setStatus] = useState('quote'); // quote, booting, login, desktop, shutdown
   const [wallpaper, setWallpaper] = useState('/wallpaper_1.jpg');
 
   useEffect(() => {
@@ -63,7 +64,11 @@ function App() {
         )}
 
         {status === 'desktop' && (
-          <DesktopEnvironment key="desktop" wallpaper={wallpaper} />
+          <DesktopEnvironment key="desktop" wallpaper={wallpaper} onShutdown={() => setStatus('shutdown')} />
+        )}
+
+        {status === 'shutdown' && (
+          <ShutdownSequence key="shutdown" onComplete={() => setStatus('login')} />
         )}
       </AnimatePresence>
     </WindowManagerProvider>

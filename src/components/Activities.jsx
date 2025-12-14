@@ -46,7 +46,7 @@ const ConnectItem = ({ icon: Icon, label, onClick }) => (
     </div>
 );
 
-export default function Activities({ isOpen, onClose }) {
+export default function Activities({ isOpen, onClose, onShutdown }) {
     const { openWindow } = useWindowManager();
     const [view, setView] = React.useState('grid'); // 'grid' | 'about'
 
@@ -231,7 +231,7 @@ export default function Activities({ isOpen, onClose }) {
                             <ConnectItem
                                 icon={Power}
                                 label="Power Off"
-                                onClick={() => window.location.reload()}
+                                onClick={onShutdown}
                             />
                         </div>
                     </div>
