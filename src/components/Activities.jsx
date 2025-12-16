@@ -73,7 +73,7 @@ export default function Activities({ isOpen, onClose, onShutdown }) {
             <div className="fixed inset-0 z-40 bg-transparent" onClick={onClose} />
 
             {/* Floating Menu Card */}
-            <div className="fixed bottom-14 left-4 z-50 w-[540px] h-[360px] flex flex-col rounded-xl overflow-hidden shadow-2xl animate-in fade-in slide-in-from-bottom-6 zoom-in-95 duration-200 border border-white/10 font-sans">
+            <div className="fixed inset-0 m-auto z-50 w-[640px] h-[480px] flex flex-col rounded-xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 border border-white/10 font-sans">
 
                 {/* Header */}
                 <div className="h-10 bg-[#0098FF] flex items-center justify-between px-4 shadow-md shrink-0 bg-gradient-to-r from-[#0098FF] to-[#007ccf]">
