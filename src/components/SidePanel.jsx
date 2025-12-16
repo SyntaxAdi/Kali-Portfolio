@@ -412,7 +412,7 @@ export default function SidePanel({ onToggleActivities, onShutdown }) {
         <motion.div
             initial={{ x: -100 }}
             animate={{ x: 0 }}
-            className="fixed top-0 left-0 h-full w-14 bg-[#1a1b26]/95 backdrop-blur-md border-r border-[#414868] flex flex-col items-center py-6 z-50 shadow-2xl select-none text-[#a9b1d6]"
+            className="fixed top-0 left-0 h-full w-14 bg-[#1a1b26]/95 backdrop-blur-md border-r border-[#414868] flex flex-col items-center pt-6 pb-2 z-50 shadow-2xl select-none text-[#a9b1d6]"
         >
             {/* 1. Logo (Top) - Click Disabled */}
             <div className="mb-0 group">
@@ -462,7 +462,7 @@ export default function SidePanel({ onToggleActivities, onShutdown }) {
             <div className="flex-1" />
 
             {/* 4. Box 4: Time Only (Vertical) */}
-            <div className="flex flex-col items-center gap-1 mb-4 select-none">
+            <div className="flex flex-col items-center gap-1 mb-2 select-none">
                 <div className="flex flex-col items-center leading-none">
                     {/* Hour */}
                     <span className="text-lg font-black text-gray-100 tracking-tight">
@@ -490,7 +490,7 @@ export default function SidePanel({ onToggleActivities, onShutdown }) {
             {/* Power - Separated at the bottom */}
             <button
                 onClick={onShutdown}
-                className="group mt-2 p-2 rounded-full hover:bg-white/5 transition-all shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-white/5"
+                className="group mt-1 p-2 rounded-full hover:bg-white/5 transition-all shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-white/5"
             >
                 <Power size={18} className="text-red-400 group-hover:text-red-300 transition-colors" />
             </button>
