@@ -42,11 +42,7 @@ V. [Getting Started](#getting-started)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;V.a. [Prerequisites](#prerequisites)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;V.b. [Installation](#installation)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;V.c. [Usage](#usage)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;V.d. [Testing](#testing)<br>
-VI. [Roadmap](#roadmap)<br>
-VII. [Contributing](#contributing)<br>
-VIII. [License](#license)<br>
-IX. [Acknowledgments](#acknowledgments)<br>
+VI. [Contributing](#contributing)<br>
 
 ---
 
@@ -372,16 +368,10 @@ Build  from the source and intsall dependencies:
 
 3. **Install the dependencies:**
 
-<!-- SHIELDS BADGE CURRENTLY DISABLED -->
-	<!-- [![npm][npm-shield]][npm-link] -->
-	<!-- REFERENCE LINKS -->
-	<!-- [npm-shield]: https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white -->
-	<!-- [npm-link]: https://www.npmjs.com/ -->
-
 	**Using [npm](https://www.npmjs.com/):**
 
 	```sh
-	❯ npm install
+	npm install
 	```
 
 ### Usage
@@ -390,33 +380,21 @@ Run the project with:
 
 **Using [npm](https://www.npmjs.com/):**
 ```sh
-npm start
+npm run dev
 ```
 
-### Testing
 
- uses the {__test_framework__} test framework. Run the test suite with:
-
-**Using [npm](https://www.npmjs.com/):**
-```sh
-npm test
-```
 
 ---
 
-## Roadmap
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
----
 
 ## Contributing
 
-- **💬 [Join the Discussions](https://LOCAL///discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://LOCAL///issues)**: Submit bugs found or log feature requests for the `` project.
-- **💡 [Submit Pull Requests](https://LOCAL///blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **💬 [Join the Discussions](https://t.me/RevyChat)**: Share your insights, provide feedback, or ask questions.
+- **🐛 [Report Issues](https://github.com/SyntaxAdi/Kali-Portfolio/issues)**: Submit bugs found or log feature requests for the Word Grid Solver project.
+- **💡 [Submit Pull Requests](https://github.com/SyntaxAdi/Kali-Portfolio/pulls)**: Review open PRs, and submit your own PRs.
+- **🌟 [New Feature or Idea?](https://t.me/ItzAditya_XD)**: If you're looking to outsource your project and want someone who delivers without excuses, I’m available for end-to-end development across multiple domains.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
@@ -443,27 +421,13 @@ npm test
 8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
 </details>
 
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://LOCAL{///}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=/">
-   </a>
-</p>
-</details>
+
 
 ---
 
-## License
 
- is protected under the [LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
----
 
-## Acknowledgments
-
-- Credit `contributors`, `inspiration`, `references`, etc.
 
 <div align="right">
 
