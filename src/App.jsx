@@ -8,7 +8,7 @@ import Window from './components/Window';
 import LoginScreen from './components/LoginScreen';
 import ShutdownSequence from './components/ShutdownSequence';
 
-const DesktopEnvironment = ({ wallpaper, onShutdown }) => {
+const DesktopEnvironment = ({ wallpaper, onLogOff, onPowerOff, onChangeWallpaper }) => {
   const { windows, openWindow, closeWindow, focusWindow, focusedWindowId } = useWindowManager();
 
   useEffect(() => {
@@ -16,7 +16,12 @@ const DesktopEnvironment = ({ wallpaper, onShutdown }) => {
   }, []);
 
   return (
-    <Desktop wallpaper={wallpaper} onShutdown={onShutdown}>
+    <Desktop
+      wallpaper={wallpaper}
+      onLogOff={onLogOff}
+      onPowerOff={onPowerOff}
+      onChangeWallpaper={onChangeWallpaper}
+    >
       {/* Render Windows */}
       {windows.map((win) => (
         <Window
@@ -38,12 +43,21 @@ const DesktopEnvironment = ({ wallpaper, onShutdown }) => {
 function App() {
   const [status, setStatus] = useState('quote'); // quote, booting, login, desktop, shutdown
   const [wallpaper, setWallpaper] = useState('/wallpaper_1.jpg');
+  const [shutdownDestination, setShutdownDestination] = useState('login');
+
+  const wallpapers = [
+    '/wallpaper_1.jpg',
+    '/wallpaper_2.jpg',
+    '/wallpaper_3.jpg'
+  ];
+
+  const handleCycleWallpaper = () => {
+    const currentIndex = wallpapers.indexOf(wallpaper);
+    const nextIndex = (currentIndex + 1) % wallpapers.length;
+    setWallpaper(wallpapers[nextIndex]);
+  };
 
   useEffect(() => {
-    const wallpapers = [
-      '/wallpaper_1.jpg',
-      '/wallpaper_2.jpg'
-    ];
     const randomPick = wallpapers[Math.floor(Math.random() * wallpapers.length)];
     setWallpaper(randomPick);
   }, []);
@@ -64,11 +78,23 @@ function App() {
         )}
 
         {status === 'desktop' && (
-          <DesktopEnvironment key="desktop" wallpaper={wallpaper} onShutdown={() => setStatus('shutdown')} />
+          <DesktopEnvironment
+            key="desktop"
+            wallpaper={wallpaper}
+            onLogOff={() => {
+              setShutdownDestination('login');
+              setStatus('shutdown');
+            }}
+            onPowerOff={() => {
+              setShutdownDestination('booting');
+              setStatus('shutdown');
+            }}
+            onChangeWallpaper={handleCycleWallpaper}
+          />
         )}
 
         {status === 'shutdown' && (
-          <ShutdownSequence key="shutdown" onComplete={() => setStatus('login')} />
+          <ShutdownSequence key="shutdown" onComplete={() => setStatus(shutdownDestination)} />
         )}
       </AnimatePresence>
     </WindowManagerProvider>

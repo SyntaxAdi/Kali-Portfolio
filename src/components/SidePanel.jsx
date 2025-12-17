@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Wifi, Volume2, Battery, Power, Calendar, Monitor, Radio, Terminal, Code, Globe, Folder, Music, Play, Pause, SkipForward, SkipBack, Bluetooth } from 'lucide-react';
+import { Wifi, Volume2, Battery, Power, Calendar, Monitor, Radio, Terminal, Code, Globe, Folder, Music, Play, Pause, SkipForward, SkipBack, Bluetooth, Clock } from 'lucide-react';
 import { KaliLogo } from './KaliLogo';
 import { useWindowManager } from '../context/WindowManagerContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -157,8 +157,7 @@ const DesktopToggle = ({ onToggle, windows }) => {
 
     return (
         <div
-            className="relative flex flex-col items-center gap-1 group cursor-pointer w-full mt-8" // Increased margin top here
-            onClick={onToggle}
+            className="relative flex flex-col items-center gap-1 group w-full mt-8" // Increased margin top here
             onMouseEnter={handleMouseEnter}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -462,7 +461,8 @@ export default function SidePanel({ onToggleActivities, onShutdown }) {
             <div className="flex-1" />
 
             {/* 4. Box 4: Time Only (Vertical) */}
-            <div className="flex flex-col items-center gap-1 mb-2 select-none">
+            <div className="flex flex-col items-center gap-2 mb-6 select-none">
+                <Clock size={16} className="text-blue-400 opacity-80" />
                 <div className="flex flex-col items-center leading-none">
                     {/* Hour */}
                     <span className="text-lg font-black text-gray-100 tracking-tight">

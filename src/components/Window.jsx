@@ -12,9 +12,9 @@ export default function Window({ title, children, icon, onClose, isFocused, onFo
             drag={!isMaximized}
             dragMomentum={false}
             initial={initialPosition}
-            animate={isMaximized ? { x: 0, y: 0, width: '100%', height: 'calc(100vh - 40px)' } : { width: '600px', height: '400px' }}
+            animate={isMaximized ? { x: 0, y: 0, width: '100%', height: '100%' } : { width: '800px', height: '550px' }}
             onMouseDown={onFocus}
-            className={`absolute flex flex-col bg-[#1c1d1f] border border-[#333] shadow-2xl overflow-hidden rounded-t-lg
+            className={`absolute flex flex-col pointer-events-auto bg-[#1c1d1f] border border-[#333] shadow-2xl overflow-hidden rounded-t-lg
         ${isFocused ? 'z-40 border-blue-500/50 ring-1 ring-blue-500/20' : 'z-10 opacity-90'}
       `}
             style={{ top: 0, left: 0 }} // Position handled by motion
